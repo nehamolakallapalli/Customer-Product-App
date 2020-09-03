@@ -39,7 +39,7 @@ public class WishedItemRestController
 			wishedItem = service.add(wishedItem);
 			CustomerDto customer = fetchAllCustomersById(data.getCustomerId());
 			ProductDto product=fetchAllProductsById(data.getProductId());
-			WishedItemDto response = wishedItemUtil.wishedItemDto(wishedItem);
+			WishedItemDto response = wishedItemUtil.wishedItemDto(wishedItem,customerDto.getCustomerId(),customerDto.getCustomerName(),productDto.getProductId(),productDto.getProductName());
 		}
 
 		@GetMapping("/get/{id}")
