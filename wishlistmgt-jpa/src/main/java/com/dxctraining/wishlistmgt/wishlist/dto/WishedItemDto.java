@@ -32,7 +32,7 @@ public class WishedItemDto
 			return customerId;
 		}
 
-		public void setCustomerId(int custId) {
+		public void setCustomerId(int customerId) {
 			this.customerId = customerId;
 		}
 

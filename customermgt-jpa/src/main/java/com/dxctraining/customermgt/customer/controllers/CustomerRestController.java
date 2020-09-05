@@ -30,7 +30,7 @@ public class CustomerRestController
 
 		@PostMapping("/add")
 		@ResponseStatus(HttpStatus.CREATED)
-		public CustomerDto addCustomer(@RequestBody CreateCustomerRequest requestData) {
+		public CustomerDto addr(@RequestBody CreateCustomerRequest requestData) {
 			Customer customer=new Customer(requestData.getName());
 			customer = customerService.add(customer);
 			CustomerDto response = customerUtil.customerDto(customer);
@@ -46,7 +46,7 @@ public class CustomerRestController
 		}
 
 		@GetMapping("/allCustomers")
-		@ResponseStatus(HttpStatus.CREATED)
+		@ResponseStatus(HttpStatus.OK)
 		public List<CustomerDto> fetchAll(){
 			List<Customer>list=customerService.allCustomers();
 			List<CustomerDto> response=new ArrayList<>();

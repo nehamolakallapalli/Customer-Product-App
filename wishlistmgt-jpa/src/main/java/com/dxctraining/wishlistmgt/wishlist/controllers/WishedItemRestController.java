@@ -32,14 +32,16 @@ public class WishedItemRestController
 		@Autowired
 		private WishedItemUtil wishedItemUtil;
 
+		private CustomerDto productDto;
+
 		@PostMapping("/add")
 		@ResponseStatus(HttpStatus.CREATED)
-		public WishedItemDto addWishItem(@RequestBody CreateWishedItemRequest data) {
+		public WishedItemDto add(@RequestBody CreateWishedItemRequest data) {
 			WishedItem wishedItem = new WishedItem(data.getCustomerId(),data.getProductId());
 			wishedItem = service.add(wishedItem);
 			CustomerDto customer = fetchAllCustomersById(data.getCustomerId());
 			ProductDto product=fetchAllProductsById(data.getProductId());
-			WishedItemDto response = wishedItemUtil.wishedItemDto(wishedItem,customerDto.getCustomerId(),customerDto.getCustomerName(),productDto.getProductId(),productDto.getProductName());
+			WishedItemDto response = wishedItemUtil.wishedItemDto(wishedItem,productId,productDto.getName(),customerId,customerDto.getName());
 		}
 
 		@GetMapping("/get/{id}")
@@ -47,18 +49,18 @@ public class WishedItemRestController
 			WishedItem wishedItem = service.findById(id);
 			CustomerDto customer = fetchAllCustomersById(wishedItem.getCustomerId());
 			ProductDto product=fetchAllProductsById(wishedItem.getProductId());
-			WishedItemDto dto=wishedItemUtil.wishedItemDto(wishedItem);
+			WishedItemDto dto=wishedItemUtil.wishedItemDto(wishedItem,productId, productDto.getName(), customerId, customerDto.getName());
 			return dto;
 		}
 
 		public CustomerDto fetchAllCustomersById(int customerId) {
-	        String url = "http://localhost:8586/customers/get/" + customerId;
+	        String url = "http://localhost:8585/customers/get/" + customerId;
 	        CustomerDto dto = restTemplate.getForObject(url, CustomerDto.class);
 	        return dto;
 	    }
 		
 		public ProductDto fetchAllProductsById(String productId) {
-	        String url = "http://localhost:8587/products/get/" + productId;
+	        String url = "http://localhost:8586/products/get/" + productId;
 	        ProductDto dto = restTemplate.getForObject(url, ProductDto.class);
 	        return dto;
 	    }
