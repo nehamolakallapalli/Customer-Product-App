@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dxctraining</groupId>
-	<artifactId>productmgt-mongorepo</artifactId>
+	<artifactId>productmgt-mongo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>productmgt-mongorepo</name>
+	<name>productmgt-mongo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
